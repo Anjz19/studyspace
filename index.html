@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Success Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & GLOBAL STYLES --- */
+        :root {
+            --primary-color: #005A9C; /* A strong, academic blue */
+            --secondary-color: #F0F8FF; /* A very light, airy blue */
+            --dark-text: #333333;
+            --light-text: #666666;
+            --accent-color: #FFC107; /* A bright accent color for buttons */
+            --white-color: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        p {
+            color: var(--light-text);
+            margin-bottom: 15px;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--white-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        /* Desktop Navigation Styles */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            padding: 5px 15px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hamburger Menu Button Styles */
+        #hamburger-btn {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 110;
+        }
+        
+        #hamburger-btn .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Hamburger to "X" Animation */
+        #hamburger-btn.active .bar1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        #hamburger-btn.active .bar2 {
+            opacity: 0;
+        }
+        #hamburger-btn.active .bar3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+
+        /* --- HERO SECTION --- */
+        #hero {
+            background: var(--primary-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        #hero h2 {
+            color: var(--white-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        #hero p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+
+        /* --- CONTENT SECTIONS & CARDS --- */
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .card-container {
+            display: flex;
+            flex-direction: column; 
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--white-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #004B82; /* A darker shade */
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+
+        /* Mobile Navigation (up to 768px) */
+        @media (max-width: 768px) {
+            #hamburger-btn {
+                display: flex; /* Show the hamburger button */
+            }
+
+            nav ul {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 73px; /* Height of the header */
+                left: 0;
+                width: 100%;
+                background-color: var(--white-color);
+                box-shadow: 0 2px 5px var(--shadow-color);
+                
+                /* Hide menu off-screen for animation */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            nav ul.show {
+                max-height: 300px; /* Animate to this height to show menu */
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--secondary-color);
+            }
+        }
+        
+        /* Tablet & Desktop Card Layout */
+        @media (min-width: 769px) {
+            .card-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .card {
+                flex-basis: calc(33.333% - 20px); 
+            }
+        }
+
+        @media (min-width: 600px) and (max-width: 768px) {
+            .card-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .card {
+               flex-basis: calc(50% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Student Success Hub</h1>
+            <button id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar bar1"></span>
+                <span class="bar bar2"></span>
+                <span class="bar bar3"></span>
+            </button>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#techniques">Techniques</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h2>Your Essential Guide to Academic Excellence</h2>
+                <p>Unlock your potential with curated resources, proven study techniques, and the best free tools available online.</p>
+            </div>
+        </section>
+
+        <section id="resources" class="content-section">
+            <div class="container">
+                <h2>Key Online Resources</h2>
+                <div class="card-container">
+                    <article class="card">
+                        <h3>Khan Academy</h3>
+                        <p>A non-profit educational organization offering free practice exercises, instructional videos, and a personalized learning dashboard.</p>
+                        <a href="https://www.khanacademy.org/" target="_blank" class="button">Visit Site</a>
+                    </article>
+                    <article class="card">
+                        <h3>Coursera</h3>
+                        <p>Access online courses, specializations, and degrees from world-class universities and companies. Great for supplemental learning.</p>
+                        <a href="https://www.coursera.org/" target="_blank" class="button">Visit Site</a>
+                    </article>
+                    <article class="card">
+                        <h3>Quizlet</h3>
+                        <p>Master any subject with flashcards, games, and learning tools. Perfect for memorizing vocabulary, dates, and formulas.</p>
+                        <a href="https://quizlet.com/" target="_blank" class="button">Visit Site</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="techniques" class="content-section">
+            <div class="container">
+                <h2>Effective Study Techniques</h2>
+                 <div class="card-container">
+                    <article class="card">
+                        <h3>The Pomodoro Technique</h3>
+                        <p>Work in focused 25-minute intervals, separated by short breaks. This method improves focus and prevents burnout. Use a timer to stay on track.</p>
+                        <a href="https://francescocirillo.com/pages/pomodoro-technique" target="_blank" class="button">Learn More</a>
+                    </article>
+                    <article class="card">
+                        <h3>The Feynman Technique</h3>
+                        <p>To truly understand a concept, try to explain it in simple terms as if you were teaching it to someone else. Identify gaps in your knowledge.</p>
+                         <a href="https://fs.blog/feynman-technique/" target="_blank" class="button">Learn More</a>
+                    </article>
+                     <article class="card">
+                        <h3>Active Recall</h3>
+                        <p>Actively retrieve information from your memory instead of passively rereading it. This strengthens neural pathways for long-term retention.</p>
+                         <a href="http://googleusercontent.com/youtube.com/2" target="_blank" class="button">Watch Video</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="content-section">
+            <div class="container">
+                <h2>Essential Student Tools</h2>
+                 <div class="card-container">
+                    <article class="card">
+                        <h3>Google Scholar</h3>
+                        <p>A freely accessible web search engine that indexes the full text or metadata of scholarly literature across an array of publishing formats.</p>
+                        <a href="https://scholar.google.com/" target="_blank" class="button">Use Tool</a>
+                    </article>
+                    <article class="card">
+                        <h3>Zotero / Mendeley</h3>
+                        <p>Free, easy-to-use tools to help you collect, organize, cite, and share research. Essential for writing papers and theses.</p>
+                         <a href="https://www.zotero.org/" target="_blank" class="button">Get Zotero</a>
+                    </article>
+                     <article class="card">
+                        <h3>Notion</h3>
+                        <p>An all-in-one workspace for notes, tasks, wikis, and databases. Highly customizable for organizing your classes and projects.</p>
+                         <a href="https://www.notion.so/" target="_blank" class="button">Try Notion</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Student Success Hub. Your journey to learning starts here.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navLinks = document.getElementById('nav-links');
+        const navLinkItems = document.querySelectorAll('#nav-links li a');
+
+        hamburgerBtn.addEventListener('click', () => {
+            // Toggle the .show class on the nav links to make them visible
+            navLinks.classList.toggle('show');
+            // Toggle the .active class on the button for the "X" animation
+            hamburgerBtn.classList.toggle('active');
+            
+            // Toggle ARIA attribute for accessibility
+            const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+            hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
+        });
+        
+        // Add event listener to each nav link to close the menu on click
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('show')) {
+                    navLinks.classList.remove('show');
+                    hamburgerBtn.classList.remove('active');
+                    hamburgerBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
